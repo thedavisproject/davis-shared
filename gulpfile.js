@@ -7,7 +7,7 @@ const drillPath = argv.drill;
 const allJs = config.allJs(drillPath);
 const testFiles = config.testFiles(drillPath);
 
-gulp.task('test', tasks.test(testFiles));
+gulp.task('test', tasks.test(testFiles, argv.reporter));
 
 gulp.task('lint', tasks.lint(allJs));
 

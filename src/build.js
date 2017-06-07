@@ -17,10 +17,15 @@ exports.lint = function(src) {
     .pipe(eslint.format());
 };
 
-exports.test = function(src) {
+exports.test = function(src, reporter) {
+  const opts = {
+    reporter: 'nyan'
+  };
+
+  if(reporter){
+    opts.reporter = reporter;
+  }
   return () =>
     gulp.src(src)
-    .pipe(mocha({
-      reporter: 'nyan'
-    }));
+    .pipe(mocha(opts));
 };
