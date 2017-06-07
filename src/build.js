@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const bump = require('gulp-bump');
 const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
+const fs = require('fs');
 
 exports.bump = function(src, type){
   return () =>
@@ -10,11 +11,19 @@ exports.bump = function(src, type){
       .pipe(gulp.dest('./'));
 };
 
-exports.lint = function(src) {
-  return () => gulp
-    .src(src)
-    .pipe(eslint())
-    .pipe(eslint.format());
+exports.lint = function(src, ci) {
+  if(ci){
+    return () => gulp
+      .src(src)
+      .pipe(eslint())
+      .pipe(eslint.format('junit', fs.createWriteStream('tmp/eslint-report.xml')));
+  }
+  else{
+    return () => gulp
+      .src(src)
+      .pipe(eslint())
+      .pipe(eslint.format());
+  }
 };
 
 exports.test = function(src, ci) {

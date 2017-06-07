@@ -9,7 +9,7 @@ const testFiles = config.testFiles(drillPath);
 
 gulp.task('test', tasks.test(testFiles, argv.ci));
 
-gulp.task('lint', tasks.lint(allJs));
+gulp.task('lint', tasks.lint(allJs, argv.ci));
 
 gulp.task('watch', function() {
   gulp.watch(allJs, ['lint', 'test']);
