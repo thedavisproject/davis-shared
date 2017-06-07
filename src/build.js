@@ -26,10 +26,10 @@ exports.lint = function(src, ci) {
   }
 };
 
-exports.test = function(src, ci) {
-  const opts = {
+exports.test = function(src, ci, options = {}) {
+  const opts = Object.assign({}, {
     reporter: 'nyan'
-  };
+  }, options);
 
   if(ci){
     opts.reporter = 'mocha-junit-reporter';

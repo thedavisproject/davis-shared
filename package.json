@@ -1,6 +1,6 @@
 {
   "name": "davis-shared",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility library for the Davis Data Management and Visualization platform",
   "main": "index.js",
   "directories": {
