@@ -17,14 +17,18 @@ exports.lint = function(src) {
     .pipe(eslint.format());
 };
 
-exports.test = function(src, reporter) {
+exports.test = function(src, ci) {
   const opts = {
     reporter: 'nyan'
   };
 
-  if(reporter){
-    opts.reporter = reporter;
+  if(ci){
+    opts.reporter = 'mocha-junit-reporter';
+    opts.reporterOptions = {
+      mochaFile: './tmp/test-results.xml'
+    };
   }
+
   return () =>
     gulp.src(src)
     .pipe(mocha(opts));
