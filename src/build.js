@@ -28,7 +28,7 @@ exports.lint = function(src, ci) {
 
 exports.test = function(src, ci, options = {}) {
   const opts = Object.assign({}, {
-    reporter: 'nyan'
+    reporter: 'progress'
   }, options);
 
   if(ci){
