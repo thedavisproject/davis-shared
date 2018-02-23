@@ -2,8 +2,6 @@ const {expect} = require('chai');
 const crypto = require('../src/crypto');
 var randomstring = require('randomstring');
 
-
-
 describe('Crypto', function(){
 
   it('should encrypt and decrypt successfully', function(){
@@ -25,6 +23,16 @@ describe('Crypto', function(){
     const encrypted2 = crypto.encrypt(key, text);
 
     expect(encrypted1).to.not.equal(encrypted2);
+  });
+
+  it('encrypt should throw for missing key', function(){
+    expect(() => crypto.encrypt(null, 'foo')).to.throw(/Encryption key not defined/);
+    expect(() => crypto.encrypt('', 'foo')).to.throw(/Encryption key not defined/);
+  });
+
+  it('encrypt should throw for missing key', function(){
+    expect(() => crypto.decrypt(null, 'foo')).to.throw(/Encryption key not defined/);
+    expect(() => crypto.decrypt('', 'foo')).to.throw(/Encryption key not defined/);
   });
 
 });

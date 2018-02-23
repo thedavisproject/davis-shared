@@ -5,6 +5,11 @@ const R = require('ramda');
 const IV_LENGTH = 16; // For AES, this is always 16
 
 const encrypt = R.curry((key, text) => {
+
+  if(!key || key === ''){
+    throw new Error('Encryption key not defined');
+  }
+
   const iv = crypto.randomBytes(IV_LENGTH);
   const cipher = crypto.createCipheriv('aes-256-cbc', new Buffer(key), iv);
 
@@ -15,6 +20,10 @@ const encrypt = R.curry((key, text) => {
 });
 
 const decrypt = R.curry((key, text) => {
+
+  if(!key || key === ''){
+    throw new Error('Encryption key not defined');
+  }
 
   const textParts = text.split(':');
   const iv = new Buffer(textParts.shift(), 'base64');
