@@ -2,6 +2,7 @@ module.exports = {
   array: require('./src/array'),
   build: require('./src/build'),
   compare: require('./src/compare'),
+  crypto: require('./src/crypto'),
   debug: require('./src/debug'),
   fp: require('./src/fp'),
   general: require('./src/general'),
